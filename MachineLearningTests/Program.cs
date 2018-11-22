@@ -1,6 +1,9 @@
-﻿using System;
+﻿using MachineLearningTests.DecisionTree;
+using MachineLearningTests.KNN;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace MachineLearningTests
 {
@@ -8,8 +11,32 @@ namespace MachineLearningTests
     {
         static void Main(string[] args)
         {
-            InitiateIrisBase();
+            LaunchKNNTesting();
+        }
 
+        static void LaunchKNNTesting()
+        {
+            KNNAlgo algo = new KNNAlgo(Datas.trainingDatas);
+            double[][] temp = algo.GetDoubleArrayFromObjectArray(Datas.testingDatas);
+
+            int error = 0;
+
+            for (int i = 0; i < temp.Length; i++)
+            {
+                (string, double)[] predictions = algo.Classify(temp[i], 2);
+                string actual = Datas.testingDatas[i][Datas.labelIndex].ToString();
+
+                Console.WriteLine($"Actual : {actual}, Prediction : { string.Join(" ", predictions.ToList().Select(p => "" + p.Item1 + " : " + p.Item2 + "% ").ToArray()) }");
+
+                if (predictions.Count() != 1 || (predictions.Count() == 1 && predictions[0].Item1 != actual)) error++;
+            }
+
+            Console.WriteLine($"Errors : { error }.");
+            Console.ReadLine();
+        }
+
+        static void LaunchDecisionTreeTesting()
+        {
             Classifier classifier = new Classifier();
             var tree = classifier.BuildTree(Datas.trainingDatas);
             classifier.PrintTree(tree);
@@ -47,7 +74,7 @@ namespace MachineLearningTests
                 objects.Add(new object[] { double.Parse(splittedLine[0].Replace('.', ',')), double.Parse(splittedLine[1].Replace('.', ',')), double.Parse(splittedLine[2].Replace('.', ',')), double.Parse(splittedLine[3].Replace('.', ',')), splittedLine[4] });
             }
 
-            Datas.trainingDatas = objects.ToArray();
+            Datas.irisTrainingDatas = objects.ToArray();
             objects = new List<object[]>();
 
             for (int i = 70; i < 150; i++)
@@ -56,7 +83,7 @@ namespace MachineLearningTests
                 objects.Add(new object[] { double.Parse(splittedLine[0].Replace('.', ',')), double.Parse(splittedLine[1].Replace('.', ',')), double.Parse(splittedLine[2].Replace('.', ',')), double.Parse(splittedLine[3].Replace('.', ',')), splittedLine[4] });
             }
 
-            Datas.testingDatas = objects.ToArray();
+            Datas.irisTestingDatas = objects.ToArray();
         }
     }
 }

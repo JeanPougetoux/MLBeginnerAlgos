@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MachineLearningTests
+namespace MachineLearningTests.DecisionTree
 {
     internal class Question
     {
