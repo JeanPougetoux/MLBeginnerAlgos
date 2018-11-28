@@ -70,8 +70,10 @@ namespace MachineLearningTests.DecisionTree
         {
             (int lenLeft, int lenRight) = (leftRows.Count(), rightRows.Count());
             double p = lenLeft / (double)(lenLeft + lenRight);
+            double q = lenRight / (double)(lenLeft + lenRight);
 
-            return currentUncertainty - p * CalculateGini(leftRows.ToArray()) - (1 - p) * CalculateGini(rightRows.ToArray());
+            // Calcul du gain : impureté actuelle - ((nombre d'élément gauche / nombre d'élément total * impureté gauche) + (nombre d'élément droite / nombre d'élément total * impureté droite))
+            return currentUncertainty - (p * CalculateGini(leftRows.ToArray()) + (q * CalculateGini(rightRows.ToArray())));
         }
 
         private (double, Question) FindBestSplit(object[][] datas)

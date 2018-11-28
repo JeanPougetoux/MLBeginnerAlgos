@@ -11,7 +11,7 @@ namespace MachineLearningTests
     {
         static void Main(string[] args)
         {
-            LaunchKNNTesting();
+            LaunchDecisionTreeTesting();
         }
 
         static void LaunchKNNTesting()
@@ -43,7 +43,7 @@ namespace MachineLearningTests
 
             int numbError = 0;
 
-
+            /*
             foreach (var datas in Datas.testingDatas)
             {
                 Console.WriteLine("excepted : " + datas[Datas.labelIndex]);
@@ -57,7 +57,7 @@ namespace MachineLearningTests
                 }
             }
 
-            Console.WriteLine("" + numbError + " errors.");
+            Console.WriteLine("" + numbError + " errors.");*/
 
             Console.ReadLine();
         }
