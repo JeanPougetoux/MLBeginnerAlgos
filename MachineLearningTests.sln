@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineLearningTests", "MachineLearningTests\MachineLearningTests.csproj", "{D5C71C85-6A86-44B8-8EF8-84911E900F54}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLDotNetExemples", "MLDotNetExemples\MLDotNetExemples.csproj", "{8B2159F4-5462-4E62-86E9-E99D36ECEB52}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanvasForML", "CanvasForML\CanvasForML.csproj", "{087ACE04-934A-4328-A5A8-AAA3C18858BB}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{D5C71C85-6A86-44B8-8EF8-84911E900F54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5C71C85-6A86-44B8-8EF8-84911E900F54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5C71C85-6A86-44B8-8EF8-84911E900F54}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8B2159F4-5462-4E62-86E9-E99D36ECEB52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B2159F4-5462-4E62-86E9-E99D36ECEB52}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B2159F4-5462-4E62-86E9-E99D36ECEB52}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B2159F4-5462-4E62-86E9-E99D36ECEB52}.Release|Any CPU.Build.0 = Release|Any CPU
 		{087ACE04-934A-4328-A5A8-AAA3C18858BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{087ACE04-934A-4328-A5A8-AAA3C18858BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{087ACE04-934A-4328-A5A8-AAA3C18858BB}.Release|Any CPU.ActiveCfg = Release|Any CPU

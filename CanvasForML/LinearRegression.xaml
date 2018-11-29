@@ -1,10 +1,10 @@
-﻿<Window x:Class="CanvasForML.MainWindow"
+﻿<Window x:Class="CanvasForML.LinearRegression"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CanvasForML"
         mc:Ignorable="d"
-        Title="MainWindow" Height="535" Width="513" ResizeMode="NoResize">
+        Title="LinearRegression" Height="535" Width="513" ResizeMode="NoResize">
     <Canvas Name="cnv" MouseLeftButtonDown="Cnv_MouseLeftButtonDown" Background="DarkGray" Width="500" Height="500" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 </Window>
