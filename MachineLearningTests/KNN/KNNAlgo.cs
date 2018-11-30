@@ -8,9 +8,11 @@ namespace MachineLearningTests.KNN
     {
         private readonly double[][] datas;
         private Dictionary<string, int> labelsIndexes;
+        private int labelIndex;
 
-        public KNNAlgo(object[][] dat)
+        public KNNAlgo(object[][] dat, int labelIndex)
         {
+            this.labelIndex = labelIndex;
             labelsIndexes = new Dictionary<string, int>();
             datas = GetDoubleArrayFromObjectArray(dat);
         }
@@ -25,7 +27,7 @@ namespace MachineLearningTests.KNN
 
                 for(int i = 0; i < data.Count(); i++)
                 {
-                    if(i == Datas.labelIndex)
+                    if(i == labelIndex)
                     {
                         if (!labelsIndexes.ContainsKey(data[i].ToString())){
                             if (labelsIndexes.Count() == 0)
@@ -96,7 +98,7 @@ namespace MachineLearningTests.KNN
             for(int i = 0; i < infos.Length; i++)
             {
                 int index = infos[i].index;
-                int c = (int) datas[index][Datas.labelIndex];
+                int c = (int) datas[index][labelIndex];
 
                 if (!votes.ContainsKey(c))
                 {
@@ -115,24 +117,24 @@ namespace MachineLearningTests.KNN
             Console.WriteLine("==========================");
             for (int i = 0; i < k; ++i)
             {
-                int c = (int)datas[infos[i].index][Datas.labelIndex];
+                int c = (int)datas[infos[i].index][labelIndex];
                 string dist = infos[i].distance.ToString("F3");
 
                 var d = datas[infos[i].index];
 
-                Console.WriteLine("( " + string.Join(", ", d.Where(e => Array.IndexOf(d, e) != Datas.labelIndex).ToArray()) + " )  :  " +
+                Console.WriteLine("( " + string.Join(", ", d.Where(e => Array.IndexOf(d, e) != labelIndex).ToArray()) + " )  :  " +
                   dist + "        " + c);
             }
         }
 
         private double Distance(double[] unknown, int indexData)
         {
-            // distance = racine((p1.x - p2.x)² + (p1.y - p2.y)² + (p1.z - p2.z)²)
+            // distance = racine((p1.x - p2.x)² + (p1.y - p2.y)² + (p1.z - p2.z)² + (p1.n - p2.n)²)
             double sum = 0.0;
 
             for(int i = 0; i < unknown.Length; i++)
             {
-                if (i == Datas.labelIndex) continue;
+                if (i == labelIndex) continue;
 
                 sum += Math.Pow((unknown[i] - datas[indexData][i]), 2);
             }

@@ -8,11 +8,13 @@ namespace MachineLearningTests.DecisionTree
     {
         private int column;
         private object value;
+        private object[] headers;
 
-        internal Question(int column, object value)
+        internal Question(int column, object value, object[] headers)
         {
             this.column = column;
             this.value = value;
+            this.headers = headers;
         }
 
         internal bool Match(object[] dataLine)
@@ -35,7 +37,7 @@ namespace MachineLearningTests.DecisionTree
             {
                 condition = ">=";
             }
-            return $"Is {Datas.headers[column]} {condition} {value.ToString()} ?";
+            return $"Is {headers[column]} {condition} {value.ToString()} ?";
         }
 
         private bool IsNumeric(object o, out double numb)

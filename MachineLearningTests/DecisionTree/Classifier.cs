@@ -7,6 +7,15 @@ namespace MachineLearningTests.DecisionTree
 {
     public class Classifier
     {
+        private int labelIndex;
+        private object[] headers;
+
+        public Classifier(int labelIndex, object[] headers)
+        {
+            this.labelIndex = labelIndex;
+            this.headers = headers;
+        }
+
         private object[] UniqueValues(object[][] datas, int columnIndex)
         {
             return datas.Select(d => d[columnIndex]).Distinct().ToArray();
@@ -18,7 +27,7 @@ namespace MachineLearningTests.DecisionTree
 
             foreach(var entry in datas)
             {
-                string label = entry[Datas.labelIndex].ToString();
+                string label = entry[labelIndex].ToString();
 
                 if (!dictionary.ContainsKey(label))
                 {
@@ -85,7 +94,7 @@ namespace MachineLearningTests.DecisionTree
 
             for(int i = 0; i < numbColumn; i++)
             {
-                if (i == Datas.labelIndex)
+                if (i == labelIndex)
                 {
                     continue;
                 }
@@ -93,7 +102,7 @@ namespace MachineLearningTests.DecisionTree
 
                 foreach (var value in values)
                 {
-                    Question question = new Question(i, value);
+                    Question question = new Question(i, value, headers);
 
                     (List<object[]> trueRows, List<object[]> falseRows) = Partition(datas, question);
 
@@ -120,7 +129,7 @@ namespace MachineLearningTests.DecisionTree
 
             if(gain == 0)
             {
-                return new Leaf(datas);
+                return new Leaf(datas, labelIndex);
             }
 
             (List<object[]> trueRows, List<object[]> falseRows) = Partition(datas, question);

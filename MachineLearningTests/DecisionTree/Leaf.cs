@@ -8,9 +8,11 @@ namespace MachineLearningTests.DecisionTree
     internal class Leaf : ITreeElement
     {
         internal readonly Dictionary<string, int> Predictions;
+        private int labelIndex;
 
-        internal Leaf(object[][] datas)
+        internal Leaf(object[][] datas, int labelIndex)
         {
+            this.labelIndex = labelIndex;
             Predictions = ClassCounts(datas);
         }
 
@@ -30,7 +32,7 @@ namespace MachineLearningTests.DecisionTree
 
             foreach (var entry in datas)
             {
-                string label = entry[Datas.labelIndex].ToString();
+                string label = entry[labelIndex].ToString();
 
                 if (!dictionary.ContainsKey(label))
                 {

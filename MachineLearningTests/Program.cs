@@ -11,53 +11,62 @@ namespace MachineLearningTests
     {
         static void Main(string[] args)
         {
-            LaunchDecisionTreeTesting();
+            InitiateIrisBase();
+
+            // LaunchDecisionTreeTesting(Datas.fruitsTrainingDatas, Datas.fruitsTestingDatas, Datas.fruitsHeaders, Datas.fruitsLabelIndex);
+            // LaunchKNNTesting(Datas.irisTrainingDatas, Datas.irisTestingDatas, Datas.irisLabelIndex);
         }
 
-        static void LaunchKNNTesting()
+        static void LaunchKNNTesting(object[][] trainingDatas, object[][] testingDatas, int labelIndex)
         {
-            KNNAlgo algo = new KNNAlgo(Datas.trainingDatas);
-            double[][] temp = algo.GetDoubleArrayFromObjectArray(Datas.testingDatas);
+            KNNAlgo algo = new KNNAlgo(trainingDatas, labelIndex);
+            double[][] temp = algo.GetDoubleArrayFromObjectArray(testingDatas);
 
             int error = 0;
 
             for (int i = 0; i < temp.Length; i++)
             {
                 (string, double)[] predictions = algo.Classify(temp[i], 2);
-                string actual = Datas.testingDatas[i][Datas.labelIndex].ToString();
+                string actual = testingDatas[i][labelIndex].ToString();
 
                 Console.WriteLine($"Actual : {actual}, Prediction : { string.Join(" ", predictions.ToList().Select(p => "" + p.Item1 + " : " + p.Item2 + "% ").ToArray()) }");
 
                 if (predictions.Count() != 1 || (predictions.Count() == 1 && predictions[0].Item1 != actual)) error++;
             }
 
-            Console.WriteLine($"Errors : { error }.");
+            Console.WriteLine(Environment.NewLine + $"Passed : { temp.Length }, Errors : { error }.");
             Console.ReadLine();
         }
 
-        static void LaunchDecisionTreeTesting()
+        static void LaunchDecisionTreeTesting(object[][] trainingDatas, object[][] testingDatas, object[] headers, int labelIndex)
         {
-            Classifier classifier = new Classifier();
-            var tree = classifier.BuildTree(Datas.trainingDatas);
+            Console.WriteLine("--- TRAINING DATAS ---" + Environment.NewLine);
+
+            Classifier classifier = new Classifier(labelIndex, headers);
+            var tree = classifier.BuildTree(trainingDatas);
             classifier.PrintTree(tree);
+
+            Console.WriteLine(Environment.NewLine + "--- TESTING DATAS ---" + Environment.NewLine);
 
             int numbError = 0;
 
-            /*
-            foreach (var datas in Datas.testingDatas)
+            foreach (var datas in testingDatas)
             {
-                Console.WriteLine("excepted : " + datas[Datas.labelIndex]);
+                Console.WriteLine("excepted : " + datas[labelIndex]);
+
                 string name = classifier.Classify(datas, tree);
+                name = name.Remove(name.Length - 2);
+
                 Console.WriteLine(name);
 
-                if (name.Split(' ')[0].ToString() != datas[Datas.labelIndex].ToString())
+
+                if (name.Split(',').Count() > 1 || name.Split(' ')[0].ToString() != datas[labelIndex].ToString())
                 {
-                    Console.WriteLine("" + datas[0] + " " + datas[1] + " " + datas[2] + " " + datas[3] + " " + datas[4] + " ");
                     numbError++;
                 }
             }
 
-            Console.WriteLine("" + numbError + " errors.");*/
+            Console.WriteLine(Environment.NewLine + "" + numbError + " errors.");
 
             Console.ReadLine();
         }
