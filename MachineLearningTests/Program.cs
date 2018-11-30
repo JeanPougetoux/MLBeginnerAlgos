@@ -13,6 +13,7 @@ namespace MachineLearningTests
         {
             InitiateIrisBase();
 
+            LaunchBayesTesting(Datas.bayesTrainingDatas, Datas.bayesTestingDatas, Datas.bayesHeaders, Datas.bayesLabelIndex);
             // LaunchDecisionTreeTesting(Datas.fruitsTrainingDatas, Datas.fruitsTestingDatas, Datas.fruitsHeaders, Datas.fruitsLabelIndex);
             // LaunchKNNTesting(Datas.irisTrainingDatas, Datas.irisTestingDatas, Datas.irisLabelIndex);
         }
@@ -69,6 +70,13 @@ namespace MachineLearningTests
             Console.WriteLine(Environment.NewLine + "" + numbError + " errors.");
 
             Console.ReadLine();
+        }
+
+        static void LaunchBayesTesting(object[][] trainingDatas, object[][] testingDatas, object[] headers, int labelIndex)
+        {
+            NaiveBayes.Classifier classifier = new NaiveBayes.Classifier(trainingDatas, headers, labelIndex);
+            classifier.BuildProbabilitiesArrays();
+            classifier.Classify(testingDatas[0]);
         }
 
         static void InitiateIrisBase()
