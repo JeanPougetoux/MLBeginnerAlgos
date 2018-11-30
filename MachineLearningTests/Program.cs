@@ -13,7 +13,12 @@ namespace MachineLearningTests
         {
             InitiateIrisBase();
 
+            // Pour essayer on lance le même dataset avec trois algos différents :
+
             LaunchBayesTesting(Datas.bayesTrainingDatas, Datas.bayesTestingDatas, Datas.bayesHeaders, Datas.bayesLabelIndex);
+            LaunchDecisionTreeTesting(Datas.bayesTrainingDatas, Datas.bayesTestingDatas, Datas.bayesHeaders, Datas.bayesLabelIndex);
+            LaunchKNNTesting(ConvertDataSetToNumeric(Datas.bayesTrainingDatas, Datas.bayesLabelIndex), ConvertDataSetToNumeric(Datas.bayesTestingDatas, Datas.bayesLabelIndex), Datas.bayesLabelIndex);
+
             // LaunchDecisionTreeTesting(Datas.fruitsTrainingDatas, Datas.fruitsTestingDatas, Datas.fruitsHeaders, Datas.fruitsLabelIndex);
             // LaunchKNNTesting(Datas.irisTrainingDatas, Datas.irisTestingDatas, Datas.irisLabelIndex);
         }
@@ -102,6 +107,48 @@ namespace MachineLearningTests
             }
 
             Datas.irisTestingDatas = objects.ToArray();
+        }
+
+        static object[][] ConvertDataSetToNumeric(object[][] datas, int labelIndex)
+        {
+            object[][] newDataSet = new object[datas.Length][];
+            Dictionary<string, double> dictio = new Dictionary<string, double>();
+
+            for (int i = 0; i < datas.Length; i++)
+            {
+                newDataSet[i] = new object[datas[0].Length];
+                for (int j = 0; j < datas[0].Length; j++)
+                {
+                    if (j == labelIndex)
+                    {
+                        newDataSet[i][j] = datas[i][j].ToString();
+                        continue;
+                    }
+
+                    if (double.TryParse(datas[i][j].ToString(), out double result))
+                    {
+                        newDataSet[i][j] = result;
+                    }
+                    else
+                    {
+                        if (!dictio.ContainsKey(datas[i][j].ToString()))
+                        {
+                            if (dictio.Count() == 0)
+                            {
+                                dictio[datas[i][j].ToString()] = 1;
+                            }
+                            else
+                            {
+                                dictio[datas[i][j].ToString()] = dictio.Max(d => d.Value) + 1;
+                            }
+                        }
+
+                        newDataSet[i][j] = dictio[datas[i][j].ToString()];
+                    }
+                }
+            }
+
+            return newDataSet;
         }
     }
 }

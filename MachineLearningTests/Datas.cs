@@ -40,20 +40,20 @@ namespace MachineLearningTests
         
         internal static object[][] fruitsTrainingDatas = new object[][]
         {
-            new object [] {0, 3, "Apple"},
-            new object [] {1, 3, "Apple"},
-            new object [] {2, 1, "Grape"},
-            new object [] {2, 1, "Grape"},
-            new object [] {1, 3, "Lemon"}
+            new object [] {"green", 3, "Apple"},
+            new object [] {"yellow", 3, "Apple"},
+            new object [] {"red", 1, "Grape"},
+            new object [] {"red", 1, "Grape"},
+            new object [] {"yellow", 3, "Lemon"}
         };
 
         internal static readonly object[][] fruitsTestingDatas = new object[][]
         {
-            new object [] {0, 3, "Apple"},
-            new object [] {1, 4, "Apple"},
-            new object [] {2, 2, "Grape"},
-            new object [] {2, 1, "Grape"},
-            new object [] {1, 3, "Lemon"},
+            new object [] {"green", 3, "Apple"},
+            new object [] {"yellow", 4, "Apple"},
+            new object [] {"red", 2, "Grape"},
+            new object [] {"red", 1, "Grape"},
+            new object [] {"yellow", 3, "Lemon"},
         };
 
         internal static readonly string[] fruitsHeaders = new string[] { "color", "diameter", "label" };
