@@ -76,7 +76,8 @@ namespace MachineLearningTests
         {
             NaiveBayes.Classifier classifier = new NaiveBayes.Classifier(trainingDatas, headers, labelIndex);
             classifier.BuildProbabilitiesArrays();
-            classifier.Classify(testingDatas[0]);
+            Console.WriteLine(classifier.Classify(testingDatas[0]));
+            Console.ReadLine();
         }
 
         static void InitiateIrisBase()

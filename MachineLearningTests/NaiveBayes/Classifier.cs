@@ -45,7 +45,36 @@ namespace MachineLearningTests.NaiveBayes
 
         public string Classify(object[] datas)
         {
-            return "";
+            Dictionary<string, double> probabilityForEachLabel = new Dictionary<string, double>();
+
+            double pX = 1;
+
+            for (int i = 0; i < datas.Count(); i++)
+            {
+                if (i == labelIndex) continue;
+
+                pX *= features[headers[i].ToString()].Possibilities[datas[i].ToString()].Probability;
+            }
+
+            foreach (KeyValuePair<string, FeaturePossibility> feature in features["label"].Possibilities)
+            {
+                double probability = 1;
+
+                for (int i = 0; i < datas.Count(); i++)
+                {
+                    if (i == labelIndex) continue;
+
+                    probability *= features[headers[i].ToString()].Possibilities[datas[i].ToString()].ForLabel[feature.Value.Title].Probability;
+                }
+
+                probability *= feature.Value.Probability;
+
+                probabilityForEachLabel[feature.Value.Title] = probability / pX;
+            }
+
+            var keyValuePair = probabilityForEachLabel.Where(p => p.Value == (probabilityForEachLabel.Max(q => q.Value))).First();
+
+            return $"Probabilité de { keyValuePair.Value } pour la réponse { keyValuePair.Key }.";
         }
     }
 }
