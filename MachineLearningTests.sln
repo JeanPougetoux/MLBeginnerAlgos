@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineLearningTests", "Mac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanvasForML", "CanvasForML\CanvasForML.csproj", "{087ACE04-934A-4328-A5A8-AAA3C18858BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstYearIACourse", "FirstYearIACourse\FirstYearIACourse.csproj", "{1B8916D0-5E20-456A-9321-948AA082A0BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{087ACE04-934A-4328-A5A8-AAA3C18858BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{087ACE04-934A-4328-A5A8-AAA3C18858BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{087ACE04-934A-4328-A5A8-AAA3C18858BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B8916D0-5E20-456A-9321-948AA082A0BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B8916D0-5E20-456A-9321-948AA082A0BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B8916D0-5E20-456A-9321-948AA082A0BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B8916D0-5E20-456A-9321-948AA082A0BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
