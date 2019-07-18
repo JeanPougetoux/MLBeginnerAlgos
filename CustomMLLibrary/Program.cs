@@ -15,12 +15,15 @@ namespace MachineLearningTests
 
             // Pour essayer on lance le même dataset avec trois algos différents :
 
-            LaunchBayesTesting(Datas.bayesTrainingDatas, Datas.bayesTestingDatas, Datas.bayesHeaders, Datas.bayesLabelIndex);
+            /*LaunchBayesTesting(Datas.bayesTrainingDatas, Datas.bayesTestingDatas, Datas.bayesHeaders, Datas.bayesLabelIndex);
             LaunchDecisionTreeTesting(Datas.bayesTrainingDatas, Datas.bayesTestingDatas, Datas.bayesHeaders, Datas.bayesLabelIndex);
-            LaunchKNNTesting(ConvertDataSetToNumeric(Datas.bayesTrainingDatas, Datas.bayesLabelIndex), ConvertDataSetToNumeric(Datas.bayesTestingDatas, Datas.bayesLabelIndex), Datas.bayesLabelIndex);
+            LaunchKNNTesting(ConvertDataSetToNumeric(Datas.bayesTrainingDatas, Datas.bayesLabelIndex), ConvertDataSetToNumeric(Datas.bayesTestingDatas, Datas.bayesLabelIndex), Datas.bayesLabelIndex);*/
 
             // LaunchDecisionTreeTesting(Datas.fruitsTrainingDatas, Datas.fruitsTestingDatas, Datas.fruitsHeaders, Datas.fruitsLabelIndex);
             // LaunchKNNTesting(Datas.irisTrainingDatas, Datas.irisTestingDatas, Datas.irisLabelIndex);
+
+            Perceptron.Classifier per = new Perceptron.Classifier(2, 1);
+            per.Classify(new double[][] { new double[] { 1, 0 }, new double[] { 1, 1 }, new double[] { 0, 1 }, new double[] { 0, 0 } }, new double[]{ 0, 1, 0, 0 });
         }
 
         static void LaunchKNNTesting(object[][] trainingDatas, object[][] testingDatas, int labelIndex)
